@@ -1,0 +1,27 @@
+.search-opption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 24px 60px;
+  background: var(--cream);
+  border-bottom: 1px solid var(--light);
+}
+
+.search {
+  width: 480px;
+  padding: 14px 24px;
+  border: 1.5px solid #D4C4A8;
+  border-radius: 50px;
+  background: #fff;
+  font-size: 15px;
+  font-family: 'Inter', sans-serif;
+  color: var(--brown);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search:focus {
+  border-color: var(--terra);
+  box-shadow: 0 0 0 3px rgba(160, 116, 78, 0.12);
+}

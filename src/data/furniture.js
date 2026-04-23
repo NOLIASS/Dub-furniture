@@ -1,0 +1,18 @@
+export const furniture = [
+  { id: 1, name: "Стілець дубовий", category: "chairs", img: "chairs.webp", price: "$100" },
+  { id: 2, name: "Стіл обідній", category: "tables", img: "chairs.webp", price: "$20" },
+  { id: 3, name: "Диван угловий", category: "sofas", img: "chairs.webp", price: "$220" },
+  { id: 4, name: "Ліжко дубове", category: "beds", img: "chairs.webp", price: "$200" },
+  { id: 5, name: "Стілець дубовий", category: "chairs", img: "chairs.webp", price: "$100" },
+  { id: 6, name: "Стіл обідній", category: "tables", img: "chairs.webp", price: "$20" },
+  { id: 7, name: "Диван угловий", category: "sofas", img: "chairs.webp", price: "$220" },
+  { id: 8, name: "Ліжко дубове", category: "beds", img: "chairs.webp", price: "$200" },
+  { id: 9, name: "Стілець дубовий", category: "chairs", img: "chairs.webp", price: "$100" },
+  { id: 10, name: "Стіл обідній", category: "tables", img: "chairs.webp", price: "$20" },
+  { id: 11, name: "Диван угловий", category: "sofas", img: "chairs.webp", price: "$220" },
+  { id: 12, name: "Ліжко дубове", category: "beds", img: "chairs.webp", price: "$200" },
+  { id: 13, name: "Стілець дубовий", category: "chairs", img: "chairs.webp", price: "$100" },
+  { id: 14, name: "Стіл обідній", category: "tables", img: "chairs.webp", price: "$20" },
+  { id: 15, name: "Диван угловий", category: "sofas", img: "chairs.webp", price: "$220" },
+  { id: 16, name: "Ліжко дубове", category: "beds", img: "chairs.webp", price: "$200" },
+] 
