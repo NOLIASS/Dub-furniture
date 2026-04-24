@@ -1,21 +1,30 @@
 import '../styles/catalog.css'
-import { furniture } from '../data/furniture'
 import FurnitureCard from './FurnitureCard'
-import { useState } from 'react'
-
-
+import { useEffect, useState } from 'react'
 
 const CATEGORIES = [
-  { value: 'chairs', label: 'Стільці' },
-  { value: 'tables', label: 'Столи' },
-  { value: 'sofas', label: 'Дивани' },
   { value: 'beds', label: 'Ліжка' },
+  { value: 'sofas', label: 'Дивани' },
+  { value: 'office chairs', label: 'Крісла' },
+  { value: 'bathroom', label: 'Ванна' },
+  { value: 'bedside tables', label: 'Тумби' },
 ]
 
 function Catalog({ query = '' }) {
+  const [items, setItems] = useState([])
+  const [loading, setLoading] = useState(true)
   const [selected, setSelected] = useState([])
 
-   function handleChange(value) {
+  useEffect(() => {
+    fetch('https://dummyjson.com/products/category/furniture?limit=12')
+      .then(res => res.json())
+      .then(data => {
+        setItems(data.products)
+        setLoading(false)
+      })
+  }, [])
+
+  function handleChange(value) {
     if (value === 'all') {
       setSelected([])
       return
@@ -26,12 +35,17 @@ function Catalog({ query = '' }) {
         : [...prev, value]
     )
   }
-  
-  const filtered = furniture
-    .filter(item => selected.length === 0 || selected.includes(item.category))
-    .filter(item => item.name.toLowerCase().includes(query.toLowerCase()))
 
+  const filtered = items
+    .filter(item =>
+      selected.length === 0 ||
+      item.tags.some(tag => selected.includes(tag)) // ← фільтр по тегах
+    )
+    .filter(item =>
+      item.title.toLowerCase().includes(query.toLowerCase())
+    )
 
+  if (loading) return <p style={{ padding: '40px' }}>Завантаження...</p>
 
   return (
     <div className="catalog">
@@ -57,15 +71,17 @@ function Catalog({ query = '' }) {
           </li>
         ))}
       </ul>
+
       <div className="catalog-q">
-        {filtered.map(item => (
-          <FurnitureCard key={item.id} {...item} />
-        ))}
+        {filtered.length === 0
+          ? <p>Нічого не знайдено</p>
+          : filtered.map(item => (
+              <FurnitureCard key={item.id} {...item} />
+            ))
+        }
       </div>
     </div>
   )
 }
-
-
 
 export default Catalog

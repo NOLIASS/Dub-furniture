@@ -85,3 +85,27 @@
   color: var(--terra);
   font-weight: 500;
 }
+
+.card-price {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 6px 0;
+}
+
+.price-old {
+  text-decoration: line-through;
+  color: #aaa;
+  font-size: 14px;
+}
+
+.price-new {
+  color: var(--terra);
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.card-rating {
+  font-size: 13px;
+  color: #b8860b;
+}
