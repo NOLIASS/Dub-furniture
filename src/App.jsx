@@ -5,6 +5,12 @@ import Search from './componen/Search'
 import Catalog from './componen/Catalog'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import ProductPage from './pages/ProductPage'
+import { CartProvider } from './context/CartContext'
+import Cart from './pages/Cart'
+
+
+
 
 
 
@@ -15,13 +21,17 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Navbar brand="ДУБ" />
-      <Search setQuery={setQuery} />
-      <Routes>
-        <Route path="/" element={<Catalog query={query} />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
+      <CartProvider>
+        <Navbar brand="ДУБ" />
+        <Search setQuery={setQuery} />
+        <Routes>
+          <Route path="/" element={<Catalog query={query} />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/product/:id" element={<ProductPage />} />
+          <Route path="/cart" element={<Cart />} />
+        </Routes>
+      </CartProvider>
     </BrowserRouter>
   )
 }

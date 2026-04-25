@@ -1,0 +1,21 @@
+.product-info{
+  display: flex;
+  gap: 20px;
+  width: 95%;
+  margin: auto;
+}
+.product-info__img{
+  width: 40%;
+}
+.product-info__information{
+  width: 60%;
+
+}
+
+
+
+
+
+
+
+

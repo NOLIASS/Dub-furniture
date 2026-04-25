@@ -19,6 +19,7 @@ function Navbar(props) {
         <li><Link to="/" style={{ textDecoration: 'none', color: '#3D2608' }}>Каталог</Link></li>
         <li><Link to="/contact" style={{ textDecoration: 'none', color: '#3D2608' }}>Контакти</Link></li>
         <li><Link to="/about" style={{ textDecoration: 'none', color: '#3D2608' }}>Про нас</Link></li>
+        <li><Link to="/cart" style={{ textDecoration: 'none', color: '#3D2608' }}>Кошик</Link></li>
       </ul>
 
     </nav>
