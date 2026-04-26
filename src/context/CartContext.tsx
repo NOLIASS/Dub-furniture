@@ -4,6 +4,10 @@ import { createContext, useContext, useState } from 'react'
 type Product = {
   id: number
   title: string
+  price: number
+  discountPercentage: number
+  thumbnail: string
+  rating: number
 }
 
 type CartContextType = {
