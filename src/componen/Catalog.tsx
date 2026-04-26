@@ -1,6 +1,8 @@
 import '../styles/catalog.css'
 import FurnitureCard from './FurnitureCard'
 import { useEffect, useState } from 'react'
+import type { Product } from '../context/CartContext'
+
 
 const CATEGORIES = [
   { value: 'beds', label: 'Ліжка' },
@@ -10,10 +12,10 @@ const CATEGORIES = [
   { value: 'bedside tables', label: 'Тумби' },
 ]
 
-function Catalog({ query = '' }) {
-  const [items, setItems] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [selected, setSelected] = useState([])
+function Catalog({ query = '' }: { query: string }) {
+  const [items, setItems] = useState<Product[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
+  const [selected, setSelected] = useState<string[]>([])
 
   useEffect(() => {
     fetch('https://dummyjson.com/products/category/furniture?limit=12')
@@ -24,7 +26,7 @@ function Catalog({ query = '' }) {
       })
   }, [])
 
-  function handleChange(value) {
+  function handleChange(value: string) {
     if (value === 'all') {
       setSelected([])
       return

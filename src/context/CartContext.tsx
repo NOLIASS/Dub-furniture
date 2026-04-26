@@ -11,6 +11,7 @@ export type Product = {
   thumbnail: string
   rating: number
   description: string
+  tags: string[]
 }
 
 type CartContextType = {
