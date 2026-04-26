@@ -1,7 +1,9 @@
 import { createContext, useContext, useState } from 'react'
 
 
-type Product = {
+
+
+export type Product = {
   id: number
   title: string
   price: number
@@ -39,5 +41,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 }
 
 export function useCart() {
-  return useContext(CartContext)
+  const context = useContext(CartContext)
+  if (!context) throw new Error('useCart має бути всередині CartProvider')
+  return context
 }

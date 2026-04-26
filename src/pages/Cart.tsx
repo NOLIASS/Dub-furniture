@@ -1,6 +1,12 @@
 import { useCart } from '../context/CartContext'
 import '../styles/cart.css'
 
+
+
+
+
+
+
 function Cart() {
   const { cart, removeFromCart } = useCart()
 
