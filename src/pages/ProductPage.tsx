@@ -2,13 +2,15 @@ import '../styles/productpage.css'
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react"
 import { useCart } from '../context/CartContext'
+import type { Product } from '../context/CartContext'
+
 
 
 function ProductPage() {
   const { addToCart } = useCart()
-  const [items, setItems] = useState(null)
-  const { id } = useParams()
-  const [loading, setLoading] = useState(true)
+  const [items, setItems] = useState<Product | null>(null)
+  const { id } = useParams<{ id: string }>()
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     fetch(`https://dummyjson.com/products/${id}`)
@@ -20,6 +22,7 @@ function ProductPage() {
   }, [id])
 
   if (loading) return <p>Завантаження...</p>
+  if (!items) return <p>Товар не знайдено</p>
 
   return (
     <div className='product-info'>

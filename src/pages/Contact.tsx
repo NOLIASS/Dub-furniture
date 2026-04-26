@@ -16,7 +16,7 @@ function Contact() {
         <h2>Написати нам</h2>
         <input type="text" placeholder="Ваше ім'я" />
         <input type="email" placeholder="Email" />
-        <textarea placeholder="Повідомлення" rows="5" />
+        <textarea placeholder="Повідомлення" rows={5} />
         <button>Надіслати</button>
       </div>
 

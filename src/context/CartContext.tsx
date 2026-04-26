@@ -10,6 +10,7 @@ export type Product = {
   discountPercentage: number
   thumbnail: string
   rating: number
+  description: string
 }
 
 type CartContextType = {
