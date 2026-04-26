@@ -1,10 +1,14 @@
 import '../styles/search.css'
-import { furniture } from '../data/furniture'
 
 
 
 
-function Search({ setQuery }) {
+type Sq ={
+  setQuery: (value: string) => void
+}
+
+
+function Search({ setQuery }: Sq) {
   return (
     <div className='search-opption'>
       <input
