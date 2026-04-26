@@ -1,0 +1,39 @@
+import { createContext, useContext, useState } from 'react'
+
+
+type Product = {
+  id: number
+  title: string
+}
+
+type CartContextType = {
+  cart: Product[]
+  addToCart: (item: Product) => void
+  removeFromCart: (id: number) => void
+}
+
+
+
+const CartContext = createContext<CartContextType | null>(null)
+ 
+export function CartProvider({ children }: { children: React.ReactNode }) {
+  const [cart, setCart] = useState<Product[]>([])
+
+  function addToCart(item: Product) {
+    setCart(prev =>[...prev, item])
+  }
+
+  function removeFromCart(id: number) {
+    setCart(prev => prev.filter(item => item.id !==id))
+  }
+
+  return (
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+      {children}
+    </CartContext.Provider>
+  )
+}
+
+export function useCart() {
+  return useContext(CartContext)
+}

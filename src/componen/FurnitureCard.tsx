@@ -1,6 +1,22 @@
 import { Link } from 'react-router-dom'
 
-function FurnitureCard({ id, title, price, discountPercentage, thumbnail, rating }) {
+
+
+
+type CardProps = {
+  id: number
+  title: string
+  price: number
+  discountPercentage: number
+  thumbnail: string
+  rating: number
+}
+
+
+
+
+function FurnitureCard({ id, title, price, discountPercentage, thumbnail, rating }: CardProps) {
+
   const discounted = (price * (1 - discountPercentage / 100)).toFixed(2)
 
   return (
