@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom'
 
-function Navbar(props) {
+
+type Head = {
+  brand: string
+}
+
+
+function Navbar({brand}: Head) {
   return (
     <nav style={{
       display: 'flex',
@@ -13,7 +19,7 @@ function Navbar(props) {
     }}>
 
 
-      <h1>{props.brand}</h1>
+      <h1>{brand}</h1>
 
       <ul style={{ display: 'flex', gap: '40px', listStyle: 'none', }}>
         <li><Link to="/" style={{ textDecoration: 'none', color: '#3D2608' }}>Каталог</Link></li>
