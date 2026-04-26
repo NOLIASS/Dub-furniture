@@ -18,10 +18,10 @@ function Catalog({ query = '' }: { query: string }) {
   const [selected, setSelected] = useState<string[]>([])
 
   useEffect(() => {
-    fetch('https://dummyjson.com/products/category/furniture?limit=12')
+    fetch('https://dub-backend-production-1dc7.up.railway.app/products')
       .then(res => res.json())
       .then(data => {
-        setItems(data.products)
+        setItems(data)
         setLoading(false)
       })
   }, [])
@@ -78,8 +78,8 @@ function Catalog({ query = '' }: { query: string }) {
         {filtered.length === 0
           ? <p>Нічого не знайдено</p>
           : filtered.map(item => (
-              <FurnitureCard key={item.id} {...item} />
-            ))
+            <FurnitureCard key={item._id || item.id} {...item} />
+          ))
         }
       </div>
     </div>

@@ -4,7 +4,8 @@ import { createContext, useContext, useState } from 'react'
 
 
 export type Product = {
-  id: number
+  _id?: string  // MongoDB id
+  id?: number   // dummyjson id
   title: string
   price: number
   discountPercentage: number
@@ -17,24 +18,22 @@ export type Product = {
 type CartContextType = {
   cart: Product[]
   addToCart: (item: Product) => void
-  removeFromCart: (id: number) => void
+  removeFromCart: (id: string | number) => void
 }
 
 
-
 const CartContext = createContext<CartContextType | null>(null)
- 
+
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [cart, setCart] = useState<Product[]>([])
 
   function addToCart(item: Product) {
-    setCart(prev =>[...prev, item])
+    setCart(prev => [...prev, item])
   }
 
-  function removeFromCart(id: number) {
-    setCart(prev => prev.filter(item => item.id !==id))
+  function removeFromCart(id: string | number) {
+    setCart(prev => prev.filter(item => (item._id || item.id) !== id))
   }
-
   return (
     <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
       {children}

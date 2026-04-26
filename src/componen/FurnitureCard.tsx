@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom'
 
 
 type CardProps = {
-  id: number
+  _id?: string
+  id?: number
   title: string
   price: number
   discountPercentage: number
@@ -15,12 +16,12 @@ type CardProps = {
 
 
 
-function FurnitureCard({ id, title, price, discountPercentage, thumbnail, rating }: CardProps) {
+function FurnitureCard({ _id, id, title, price, discountPercentage, thumbnail, rating }: CardProps) {
 
   const discounted = (price * (1 - discountPercentage / 100)).toFixed(2)
 
   return (
-    <Link to={`/product/${id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+    <Link to={`/product/${_id || id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
       <div className="card">
         <img src={thumbnail} alt={title} />
         <h3>{title}</h3>
