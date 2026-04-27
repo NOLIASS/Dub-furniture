@@ -8,6 +8,7 @@ import Contact from './pages/Contact'
 import ProductPage from './pages/ProductPage'
 import AdminPage from './pages/Admin'
 import LoginPage from './pages/Login'
+import ProtectedRoute from './componen/ProtectedRoute'
 import { CartProvider } from './context/CartContext'
 import Cart from './pages/Cart'
 
@@ -32,8 +33,12 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/admin" element={<AdminPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/admin" element={
+            <ProtectedRoute>
+              <AdminPage />
+            </ProtectedRoute>
+          } />
         </Routes>
       </CartProvider>
     </BrowserRouter>
