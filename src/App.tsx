@@ -6,6 +6,7 @@ import Catalog from './componen/Catalog'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import ProductPage from './pages/ProductPage'
+import AdminPage from './pages/Admin'
 import { CartProvider } from './context/CartContext'
 import Cart from './pages/Cart'
 
@@ -30,6 +31,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/admin" element={<AdminPage />} />
         </Routes>
       </CartProvider>
     </BrowserRouter>
