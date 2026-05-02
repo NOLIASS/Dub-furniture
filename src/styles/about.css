@@ -65,3 +65,23 @@
   color: var(--terra-dark);
   line-height: 1.7;
 }
+
+@media (max-width: 768px) {
+  .about {
+    padding: 0 20px;
+    margin: 40px auto;
+  }
+
+  .about-hero {
+    padding: 40px 20px;
+  }
+
+  .about-hero h1 {
+    font-size: 36px;
+  }
+
+  .about-cards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

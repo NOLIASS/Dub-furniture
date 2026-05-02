@@ -1,36 +1,46 @@
 import { Link } from 'react-router-dom'
-
+import { useCart } from '../context/CartContext'
+import { useState } from 'react'
+import '../styles/navbar-style.css'
 
 type Head = {
   brand: string
 }
 
+function Navbar({ brand }: Head) {
+  const { cart } = useCart()
+  const [menuOpen, setMenuOpen] = useState(false)
 
-function Navbar({brand}: Head) {
   return (
-    <nav style={{
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      padding: '20px 60px',
-      backgroundColor: '#FAF7F2',
-      borderBottom: '1px solid #D4C4A8',
-      width: '100%',
-    }}>
+    <nav>
+      <Link to="/" className="nav-logo">
+        <h1>{brand}</h1>
+      </Link>
 
+      <button
+        className={`nav-burger ${menuOpen ? 'nav-burger--open' : ''}`}
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
+        <span />
+        <span />
+        <span />
+      </button>
 
-      <h1>{brand}</h1>
-
-      <ul style={{ display: 'flex', gap: '40px', listStyle: 'none', }}>
-        <li><Link to="/" style={{ textDecoration: 'none', color: '#3D2608' }}>Каталог</Link></li>
-        <li><Link to="/contact" style={{ textDecoration: 'none', color: '#3D2608' }}>Контакти</Link></li>
-        <li><Link to="/about" style={{ textDecoration: 'none', color: '#3D2608' }}>Про нас</Link></li>
-        <li><Link to="/cart" style={{ textDecoration: 'none', color: '#3D2608' }}>Кошик</Link></li>
+      <ul className={`nav-links ${menuOpen ? 'nav-links--open' : ''}`}>
+        <li><Link to="/" onClick={() => setMenuOpen(false)}>Каталог</Link></li>
+        <li>
+          <Link to="/cart" className="nav-cart" onClick={() => setMenuOpen(false)}>
+            Кошик
+            {cart.length > 0 && (
+              <span className="nav-cart-count">{cart.length}</span>
+            )}
+          </Link>
+        </li>
+        <li><Link to="/contact" onClick={() => setMenuOpen(false)}>Контакти</Link></li>
+        <li><Link to="/about" onClick={() => setMenuOpen(false)}>Про нас</Link></li>
       </ul>
-
     </nav>
   )
 }
-
 
 export default Navbar

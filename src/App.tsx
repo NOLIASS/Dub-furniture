@@ -26,9 +26,13 @@ function App() {
     <BrowserRouter>
       <CartProvider>
         <Navbar brand="ДУБ" />
-        <Search setQuery={setQuery} />
         <Routes>
-          <Route path="/" element={<Catalog query={query} />} />
+          <Route path="/" element={
+            <>
+              <Search setQuery={setQuery} />
+              <Catalog query={query} />
+            </>
+          } />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/product/:id" element={<ProductPage />} />

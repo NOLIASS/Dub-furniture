@@ -3,13 +3,12 @@ import FurnitureCard from './FurnitureCard'
 import { useEffect, useState } from 'react'
 import type { Product } from '../context/CartContext'
 
-
 const CATEGORIES = [
-  { value: 'beds', label: 'Ліжка' },
-  { value: 'sofas', label: 'Дивани' },
-  { value: 'office chairs', label: 'Крісла' },
-  { value: 'bathroom', label: 'Ванна' },
-  { value: 'bedside tables', label: 'Тумби' },
+  { value: 'beds', label: '🛏 Ліжка' },
+  { value: 'sofas', label: '🛋 Дивани' },
+  { value: 'office chairs', label: '🪑 Крісла' },
+  { value: 'bathroom', label: '🚿 Ванна' },
+  { value: 'bedside tables', label: '🗄 Тумби' },
 ]
 
 function Catalog({ query = '' }: { query: string }) {
@@ -41,42 +40,50 @@ function Catalog({ query = '' }: { query: string }) {
   const filtered = items
     .filter(item =>
       selected.length === 0 ||
-      item.tags.some(tag => selected.includes(tag)) // ← фільтр по тегах
+      item.tags.some(tag => selected.includes(tag))
     )
     .filter(item =>
       item.title.toLowerCase().includes(query.toLowerCase())
     )
 
-  if (loading) return <p style={{ padding: '40px' }}>Завантаження...</p>
+  if (loading) return (
+    <div className="catalog-loading">
+      <div className="catalog-spinner" />
+      <p>Завантаження товарів...</p>
+    </div>
+  )
 
   return (
     <div className="catalog">
-      <ul className="filter">
-        <li>
-          <input
-            type="checkbox"
-            value="all"
-            checked={selected.length === 0}
-            onChange={() => handleChange('all')}
-          />
-          <label>Всі категорії</label>
-        </li>
+      <aside className="filter">
+        <p className="filter-title">Категорії</p>
+
+        <div
+          className={`filter-item ${selected.length === 0 ? 'filter-item--active' : ''}`}
+          onClick={() => handleChange('all')}
+        >
+          🏠 Всі категорії
+        </div>
+
         {CATEGORIES.map(({ value, label }) => (
-          <li key={value}>
-            <input
-              type="checkbox"
-              value={value}
-              checked={selected.includes(value)}
-              onChange={() => handleChange(value)}
-            />
-            <label>{label}</label>
-          </li>
+          <div
+            key={value}
+            className={`filter-item ${selected.includes(value) ? 'filter-item--active' : ''}`}
+            onClick={() => handleChange(value)}
+          >
+            {label}
+          </div>
         ))}
-      </ul>
+      </aside>
 
       <div className="catalog-q">
         {filtered.length === 0
-          ? <p>Нічого не знайдено</p>
+          ? (
+            <div className="catalog-empty">
+              <p>😔 Нічого не знайдено</p>
+              <span>Спробуйте інший пошук або категорію</span>
+            </div>
+          )
           : filtered.map(item => (
             <FurnitureCard key={item._id || item.id} {...item} />
           ))
